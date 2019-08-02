@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Update;
 @Mapper
 public interface MenuCategoryMapper {
 	
-	@Select("select * from menu_category")
+	@Select("select * from menu_category where status='ENABLED'")
 	List<MenuCategory> findAll();
 	
 	@Select("select * from menu_category where id=#{id}")
@@ -24,7 +24,7 @@ public interface MenuCategoryMapper {
 	void save(MenuCategoryForm form);
 	
 	@Update("update menu_category set name=#{name} where id=#{id}")
-	void update(@Param("id")Integer id, MenuCategoryForm form);
+	void update(@Param("id")Integer id, @Param("name")String name);
 	
 	@Update("update menu_category set status='DELETED' where id=#{id}")
 	void delete(@Param("id")Integer id);
