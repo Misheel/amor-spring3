@@ -21,7 +21,7 @@ public interface MenuCategoryMapper {
 	MenuCategory findByName(@Param("name")String name);
 	
 	@Insert("insert into menu_category values(null, #{name}, 'ENABLED')")
-	void save(MenuCategoryForm form);
+	void save(MenuCategory form);
 	
 	@Update("update menu_category set name=#{name} where id=#{id}")
 	void update(@Param("id")Integer id, @Param("name")String name);

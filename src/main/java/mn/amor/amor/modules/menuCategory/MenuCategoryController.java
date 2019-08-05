@@ -26,13 +26,13 @@ public class MenuCategoryController {
 		
 	@PostMapping("/save")	
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void save(@RequestBody MenuCategoryForm form) {		
+	public void save(@RequestBody MenuCategory form) {		
 		mapper.save(form);
 	}
 	
 	@PostMapping("/update/{id}")	
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void update(@RequestBody MenuCategoryForm form, @PathVariable Integer id) {		
+	public void update(@RequestBody MenuCategory form, @PathVariable Integer id) {		
 		mapper.update(id, form.getName());
 	}
 	
