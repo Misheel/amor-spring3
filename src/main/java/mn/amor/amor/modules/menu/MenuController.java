@@ -44,7 +44,8 @@ public class MenuController {
 		
 	@PostMapping("/save")	
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void save(@RequestBody Menu form) {		
+	public void save(@RequestBody Menu form) {
+		form.setStatus("ENABLED");
 		mapper.save(form);
 	}
 	

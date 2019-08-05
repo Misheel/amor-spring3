@@ -11,10 +11,10 @@ import org.apache.ibatis.annotations.Update;
 @Mapper
 public interface MenuMapper {
 	
-	@Select("select * from menu left join menu_category on menu.category_id = menu_category.id where menu.status='ENABLED' and menu_category.name = #{categoryName}")
+	@Select("select * from menu left join menu_category on menu.categoryId = menu_category.id where menu.status='ENABLED' and menu_category.name = #{categoryName}")
 	List<Menu> findAllByCategoryName(@Param("categoryName")String categoryName);
 	
-	@Select("select * from menu where category_id = #{categoryId} and status = 'ENABLED'")
+	@Select("select * from menu where categoryId = #{categoryId} and status = 'ENABLED'")
 	List<Menu> findAllByCategoryId(@Param("categoryId")Integer categoryId);
 	
 	@Select("select * from menu where id=#{id}")
@@ -23,7 +23,7 @@ public interface MenuMapper {
 	@Insert("insert into menu values(null, #{categoryId}, #{name}, #{link}, #{target}, #{hasChildren}, #{parentId}, #{ordering}, #{status})")
 	void save(Menu menu);
 	
-	@Update("update menu set name=#{name}, link=#{link}, target=#{target}, has_children=#{hasChildren} where id=#{id}")
+	@Update("update menu set name=#{name}, link=#{link}, target=#{target}, hasChildren=#{hasChildren} where id=#{id}")
 	void update(Menu menu);
 	
 	@Update("update menu set status='DELETED' where id=#{id}")

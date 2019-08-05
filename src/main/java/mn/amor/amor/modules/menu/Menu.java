@@ -2,7 +2,7 @@ package mn.amor.amor.modules.menu;
 
 public class Menu {
 	
-	private Integer id;
+	private Integer id;	
 	private Integer categoryId;
 	private String name;
 	private String link;	
