@@ -30,6 +30,11 @@ public class MenuCategoryController {
 		mapper.save(form);
 	}
 	
+	@GetMapping("/read/{id}")		
+	public MenuCategory read(@PathVariable Integer id) {		
+		return mapper.findById(id);
+	}
+	
 	@PostMapping("/update/{id}")	
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void update(@RequestBody MenuCategory form, @PathVariable Integer id) {		

@@ -41,6 +41,11 @@ public class MenuController {
 	public List<Menu> listByCategoryId(@RequestParam Integer id) {			
 		return mapper.findAllByCategoryId(id);
 	}
+	
+	@GetMapping("/listByParentId")
+	public List<Menu> listByParentId(@RequestParam Integer id) {			
+		return mapper.findAllByParentId(id);
+	}
 		
 	@PostMapping("/save")	
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
@@ -59,6 +64,11 @@ public class MenuController {
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void update(@PathVariable Integer id) {		
 		mapper.delete(id);
+	}
+	
+	@GetMapping("/read/{id}")		
+	public Menu read(@PathVariable Integer id) {		
+		return mapper.findById(id);
 	}
 
 }

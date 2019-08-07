@@ -11,11 +11,14 @@ import org.apache.ibatis.annotations.Update;
 @Mapper
 public interface MenuMapper {
 	
-	@Select("select * from menu left join menu_category on menu.categoryId = menu_category.id where menu.status='ENABLED' and menu_category.name = #{categoryName}")
+	@Select("select * from menu left join menu_category on menu.categoryId = menu_category.id where menu.status='ENABLED' and menu.parentId is null  and menu_category.name = #{categoryName}")
 	List<Menu> findAllByCategoryName(@Param("categoryName")String categoryName);
 	
-	@Select("select * from menu where categoryId = #{categoryId} and status = 'ENABLED'")
+	@Select("select * from menu where categoryId = #{categoryId} and status = 'ENABLED' and parentId is null order by ordering")
 	List<Menu> findAllByCategoryId(@Param("categoryId")Integer categoryId);
+	
+	@Select("select * from menu where parentId = #{parentId} and status = 'ENABLED' order by ordering")
+	List<Menu> findAllByParentId(@Param("parentId")Integer parentId);
 	
 	@Select("select * from menu where id=#{id}")
 	Menu findById(@Param("id")Integer id);		
