@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Update;
 @Mapper
 public interface MenuMapper {
 	
-	@Select("select * from menu left join menu_category on menu.categoryId = menu_category.id where menu.status='ENABLED' and menu.parentId is null  and menu_category.name = #{categoryName}")
+	@Select("select * from menu left join menu_category on menu.categoryId = menu_category.id where menu.status='ENABLED' and menu.parentId is null  and menu_category.name = #{categoryName} order by menu.ordering")
 	List<Menu> findAllByCategoryName(@Param("categoryName")String categoryName);
 	
 	@Select("select * from menu where categoryId = #{categoryId} and status = 'ENABLED' and parentId is null order by ordering")
@@ -28,6 +28,9 @@ public interface MenuMapper {
 	
 	@Update("update menu set name=#{name}, link=#{link}, target=#{target}, hasChildren=#{hasChildren} where id=#{id}")
 	void update(Menu menu);
+	
+	@Update("update menu set ordering=#{ordering} where id=#{id}")
+	void changeOrdering(@Param("id")Integer id, @Param("ordering")Integer ordering);
 	
 	@Update("update menu set status='DELETED' where id=#{id}")
 	void delete(@Param("id")Integer id);

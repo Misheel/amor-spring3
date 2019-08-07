@@ -1,6 +1,7 @@
 package mn.amor.amor.modules.menu;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -58,6 +59,16 @@ public class MenuController {
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void update(@RequestBody Menu form) {		
 		mapper.update(form);
+	}
+	
+	@PostMapping("/sort")	
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	public void sort(@RequestParam Map<String,String> params) {		
+		for (Map.Entry<String, String> entry : params.entrySet()) {			
+			Integer id = Integer.parseInt(entry.getKey());
+			Integer ordering = Integer.parseInt(entry.getValue());
+			mapper.changeOrdering(id, ordering);                        
+        }
 	}
 	
 	@PostMapping("/delete/{id}")	
