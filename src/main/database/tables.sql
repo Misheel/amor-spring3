@@ -22,3 +22,10 @@ create table menu(
 	foreign key (parentId) references menu(id)
 );
 
+create table static_text(
+	id integer unsigned auto_increment primary key,
+	name varchar(20),
+	text TEXT,		
+	key(name)	
+);
+
