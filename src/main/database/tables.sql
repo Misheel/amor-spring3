@@ -29,3 +29,12 @@ create table static_text(
 	key(name)	
 );
 
+create table post(
+	id integer unsigned auto_increment primary key,
+	name varchar(255),	
+	content text,
+	created datetime, 	
+	status varchar(10),
+	key(created),
+	key(status)
+);
