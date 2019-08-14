@@ -38,3 +38,18 @@ create table post(
 	key(created),
 	key(status)
 );
+
+create table comment(
+	id integer unsigned auto_increment primary key,
+	postId integer unsigned,
+	parentId integer unsigned,
+	name varchar(255),	
+	comment text,
+	ip varchar(255),
+	created datetime,	
+	status varchar(10),
+	key(created),
+	key(status),
+	foreign key (postId) references post(id),
+	foreign key (parentId) references comment(id)
+);
